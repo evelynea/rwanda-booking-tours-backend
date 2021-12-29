@@ -9,9 +9,9 @@ const bookSchema= new mongoose.Schema({
         ref:"tour"
     },
     status:{
-        type: mongoose.Schema.ObjectId,
-        enum:["pending","accepted","declined","cancel"],
-        ref:"pending"
+        type: String,
+        enum:["pending","accepted","declined","canceled"],
+        default:"pending"
     },
 },
 {
@@ -20,7 +20,7 @@ const bookSchema= new mongoose.Schema({
 bookSchema.pre(/^find/,function(next){
     this.populate({
         path:"user",
-        select:"firstName lastName email gender address"
+        select:"firstName lastName phone email gender address"
     }).populate({
         path:"tour",
     });

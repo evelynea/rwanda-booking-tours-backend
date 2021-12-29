@@ -18,6 +18,7 @@ userRoute.post("/login", UserController.userLogin)
 
 //booking path
 userRoute.post("/book/:id",verifyToken,verifyAccess("user"), UserController.bookTour);
+userRoute.patch("/book/status", verifyToken, verifyAccess("admin"), UserController.changeBookStatus)
 
 userRoute.get("/books/all", UserController.getAllBookings)
 userRoute.get("/books/:idtour",verifyToken,verifyAccess("admin"), UserController.getAllBookingsByTourId)
